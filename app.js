@@ -1,4 +1,5 @@
 const express = require("express");
+const bodyParser = require("body-parser")
 const app = express()
 const PORT = 3000
 
@@ -145,15 +146,15 @@ var animeList = [
     }
 ]
 
+app.set("view engine", "pug")
+
 app.post("/", (req, res) => {
     console.log(req.body);
     res.send("OK")
 })
 
-
-
 app.get("/", (req, res) => {
-    res.send("Index")
+    res.render("Index")
 })
 
 app.get("/anime", (req, res) => {
@@ -170,7 +171,7 @@ app.get("/anime/tags/:tags", (req, res) => {
     let tagHits = 0;
     let itemsFound;
     for (tag of searchTagList) {
-        
+
     }
 
     for (tag of searchTagList) {
