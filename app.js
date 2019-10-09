@@ -89,7 +89,7 @@ var animeList = [
             short_desc: "lorem ipsum",
             long_desc: "lorem ipsum",
             lang: ["Japanese", "English"],
-            tags: ["demons",],
+            tags: ["demons"],
 
             seasons: [
                 {
@@ -161,28 +161,24 @@ app.get("/anime", (req, res) => {
     res.send("<h1> List of Anime </h1>")
 })
 
+/**
+ * @TODO Fix this searcher
+ */
 app.get("/anime/tags/:tags", (req, res) => {
     let searchTagList = req.params.tags.split("&");
     let listLength = searchTagList.length;
-    let tagHits = 0
-    let itemsFound = animeList.filter((entry) => {
-        for (let tag of searchTagList) {
-            if (entry.data.tags.some((tagFromData)=> {
-                if (tagFromData == tag){
-                    return true;
-                }
-                return false;
-            })) {
-                tagHits++
-            }
-        }
+    let tagHits = 0;
+    let itemsFound;
+    for (tag of searchTagList) {
+        
+    }
 
-        if (tagHits >= listLength) {
-            return true
-        } else {
-            return false
-        }
-    })
+    for (tag of searchTagList) {
+        itemsFound = animeList.filter((entry) => {
+            return entry.data.tags.some((item) => {
+                return item == tag
+            })
+    })}
     res.json(itemsFound)
 })
 
