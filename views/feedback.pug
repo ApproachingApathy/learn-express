@@ -1,0 +1,8 @@
+extends layout
+
+block content
+    form(action="/feedback/give", method="post")
+        label(for="feedback-text") Give us feedback!
+        input#feedback-text(type="text", name="feedback")
+        br
+        button(type="submit")

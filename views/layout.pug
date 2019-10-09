@@ -6,26 +6,31 @@ html(lang="en")
         meta(http-equiv="X-UA-Compatible", content="ie=edge")
         title Document
         link(rel="stylesheet", href="/styles/style.css")
-    body
-        header#header
-            .logo
-                img(src="", alt="")
-            .nav-section
-                ul.nav-list
-                    li
-                        a(href="/") Home
-                    li
-                        a(href="/anime") Shows
-                    li
-                        a(href="/about-us") About Us
+        block head
+    body.flex-column
+        .container
+            header#header
+                .logo
+                    h1 Hello World
+                    img(src="", alt="")
+                .nav-section
+                    ul.nav-list
+                        li
+                            a(href="/") Home
+                        li
+                            a(href="/anime") Shows
+                        li
+                            a(href="/about-us") About Us
+            section.pane
 
-        block content
+                .content
+                    block content
 
-        .sidebar
-            ul
-                li hello
-                li hi there
-                li stuff
+                .sidebar
+                    ul
+                        li hello
+                        li hi there
+                        li stuff
 
-        footer#footer
-            p footer
+            footer#footer
+                p footer

@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    .title-div
+        if entry.data.eng_title 
+            h1= entry.data.eng_title
+            p.subtitle= entry.data.o_lang_title
+        else
+            h1= entry.data.o_lang_title
+    .desc-div
+        div= entry.data.long_desc
+
+    .seasons-div
+        for season in entry.data.seasons
+            h4= season.title
+            table
+                for episode in season.episodes
+                    tr
+                        td= episode.number + " | " + episode.title
+
+        

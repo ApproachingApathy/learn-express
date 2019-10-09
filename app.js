@@ -147,6 +147,9 @@ var animeList = [
 ]
 
 app.set("view engine", "pug")
+app.use(express.static("public"))
+app.use(bodyParser.urlencoded({extended: false}))
+// app.use(bodyParser.json())
 
 app.post("/", (req, res) => {
     console.log(req.body);
@@ -154,12 +157,18 @@ app.post("/", (req, res) => {
 })
 
 app.get("/", (req, res) => {
-    res.render("Index")
+    res.render("index")
+})
+
+app.get("/feedback", (req, res) => {
+    res.render("feedback")
 })
 
 app.get("/anime", (req, res) => {
+
+    res.render("shows", {animeList: animeList})
     //Anime page
-    res.send("<h1> List of Anime </h1>")
+    // res.send("<h1> List of Anime </h1>")
 })
 
 /**
@@ -264,7 +273,7 @@ app.get("/anime/:id", (req, res) => {
     let itemFound = false;
     for (let entry of animeList) {
         if (entry.id == req.params.id) {
-            res.json(entry)
+            res.render("show-details",{entry: entry})
             itemFound = true
             break;
         }
@@ -275,7 +284,10 @@ app.get("/anime/:id", (req, res) => {
     // res.send(`<h1> My Anime ${req.params.id} </h1>`)
 })
 
-
+app.post("/feedback/give", (req, res) => {
+    console.log(req.body)
+    res.redirect("/")
+})
 
 
 
