@@ -4,6 +4,8 @@ block head
     link(rel="stylesheet", href="styles/shows.css")
 
 block content
+
+    h1 Shows
     each show in animeList
         - var showId = show.id
         .show-item(id="showItem-" + showId)
@@ -15,8 +17,8 @@ block content
             .show-desc
                 p= show.data.short_desc
 
-                .show-info-bar
-                p= show.data.release_season, show.data.release_year
-                p= showId
+                ul.show-info-bar
+                    li= show.data.release_season, show.data.release_year
+                    li= showId
 
 

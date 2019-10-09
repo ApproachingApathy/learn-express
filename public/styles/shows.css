@@ -1,0 +1,14 @@
+.show-item {
+    background-color: lightblue;
+    padding: 5px 20px;
+    margin: 3px;
+    transition: background-color 250ms;
+}
+
+.show-item:first-child {
+    margin-top: 40px;
+}
+
+.show-item:hover {
+    background-color: rgb(235, 235, 235);
+}
