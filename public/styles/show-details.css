@@ -1,0 +1,13 @@
+.title-div {
+    background-color: lightblue;
+    margin: 15px 0px;
+    /* padding: 5px; */
+}
+
+.title-div * {
+    padding: 7px;
+}
+
+.title-div h1, p {
+    margin: 0;
+}

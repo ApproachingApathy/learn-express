@@ -12,3 +12,24 @@
 .show-item:hover {
     background-color: rgb(235, 235, 235);
 }
+
+.show-item a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.show-info-bar {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    justify-content: space-between;
+}
+
+.show-desc  p {
+    padding: 0 20px;
+}
+
+.show-info-bar li {
+    list-style-type: none;
+    padding: 5px 20px;
+}

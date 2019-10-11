@@ -10,6 +10,7 @@ body {
 
 .container {
     --border: 2px solid black;
+    width: 100%;
     max-width: 950px;
     margin: 0;
     border-left: var(--border);
@@ -72,6 +73,21 @@ body {
 
 }
 
+.form-group {
+    margin: 7px 15px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+.text-input {
+    border: 1px solid lightgrey;
+    font-size: 1.25em;
+    padding: 3px 7px;
+    text-align: left;
+}
+
 #header {
     background-color: lightblue;
 }
@@ -110,6 +126,10 @@ body {
 
     .sidebar {
         display: initial;
+    }
+
+    .text-input {
+        max-width: 75%;
     }
 
 }

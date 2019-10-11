@@ -1,0 +1,35 @@
+extends ./account 
+
+append head
+    link(rel="stylesheet", href="/styles/shows.css")
+
+block account
+    .tab-bar
+        ul.tab-bar-list
+            li.tab-bar-Active Watch List
+            li Profile
+            li Settings
+    .watch-list-div
+        p Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem asperiores eaque quae vitae at ducimus recusandae porro nulla fuga voluptatibus iste qui omnis, maiores, sapiente neque aperiam, alias aliquam. Unde.
+        
+        h1 Watch List
+        if favList.length > 0
+
+            each show in favList
+                - var showId = show.id
+                .show-item(id="showItem-" + showId)
+                    a(href="/anime/" + showId)
+                        if show.data.eng_title
+                            h1= show.data.eng_title
+                        else
+                            h1= show.data.o_lang_title
+
+                        .show-desc
+                            p= show.data.short_desc
+
+                            ul.show-info-bar
+                                li= show.data.release_season + " " + show.data.release_year
+                                li= showId
+
+        else
+            p Nothing's in your watchlist! Find a show and Add it to your favorites!

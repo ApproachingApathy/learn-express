@@ -1,5 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser")
+const session = require("express-session")
+const accountRouter = require("./routes/account")
 const app = express()
 const PORT = 3000
 
@@ -149,16 +151,34 @@ var animeList = [
 app.set("view engine", "pug")
 app.use(express.static("public"))
 app.use(bodyParser.urlencoded({extended: false}))
+
+app.use(session({
+    secret: "All your dependencies are belong to us! No npm-san!",
+    resave: false,
+    saveUninitialized: true,
+}))
+
+app.use("/account", accountRouter)
+// app.use(
+//     session({
+//       secret: "you don't know my session secret, ha!",
+//       resave: false,
+//       saveUninitialized: true
+//     })
+//   );
+
+
 // app.use(bodyParser.json())
 
-app.post("/", (req, res) => {
-    console.log(req.body);
-    res.send("OK")
-})
+// app.post("/", (req, res) => {
+//     console.log(req.body);
+//     res.send("OK")
+// })
 
 app.get("/", (req, res) => {
     res.render("index")
 })
+
 
 app.get("/feedback", (req, res) => {
     res.render("feedback")
@@ -273,7 +293,10 @@ app.get("/anime/:id", (req, res) => {
     let itemFound = false;
     for (let entry of animeList) {
         if (entry.id == req.params.id) {
-            res.render("show-details",{entry: entry})
+            res.render("show-details",{
+                entry: entry,
+                favList: req.session.userFavList
+            })
             itemFound = true
             break;
         }
@@ -287,6 +310,21 @@ app.get("/anime/:id", (req, res) => {
 app.post("/feedback/give", (req, res) => {
     console.log(req.body)
     res.redirect("/")
+})
+
+app.get("/saveShow/:id", (req, res) => {
+    if (req.session.userFavList) {
+
+        for (let entry of animeList) {
+            console.log(entry)
+            if (entry.id == req.params.id) {
+                req.session.userFavList.push(entry) 
+            }
+        }
+        res.redirect("back")
+    } else {
+        res.redirect("/account")
+    }
 })
 
 

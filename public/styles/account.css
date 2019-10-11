@@ -1,0 +1,54 @@
+:root {
+    --tab-border: 1px solid black;
+}
+
+.account-pane {
+    align-items: center;
+    justify-content: center;
+}
+
+.signin-div {
+    border: 1px solid lightgrey;
+    min-width: 400px;
+}
+
+.signin-div form {
+    align-items: center;
+    justify-content: center;
+}
+
+.signin-div form button {
+    margin: 7px;
+}
+
+.tab-bar {
+    width: 100%;
+    margin: 0;
+    border: var(--tab-border);
+}
+
+.tab-bar-list {
+    padding: 0;
+    display:flex;
+    margin: 0;
+}
+
+.tab-bar-list li {
+    list-style-type: none;
+    padding: 5px 7px;
+    border-left: var(--tab-border);
+    border-right: var(--tab-border);
+
+}
+
+.tab-bar-Active {
+    background-color: lightblue;
+}
+
+.watch-list-div {
+    border: var(--tab-border);
+}
+
+ .form-group label {
+     min-width: 75%;
+ }

@@ -1,5 +1,8 @@
 extends layout
 
+block head
+    link(rel="stylesheet", href="/styles/show-details.css")
+
 block content
     .title-div
         if entry.data.eng_title 
@@ -7,6 +10,8 @@ block content
             p.subtitle= entry.data.o_lang_title
         else
             h1= entry.data.o_lang_title
+        if favList
+            a(href="/saveShow/" + entry.id) Add to favorites
     .desc-div
         div= entry.data.long_desc
 
