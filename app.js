@@ -308,7 +308,7 @@ app.get("/anime/:id", (req, res) => {
 })
 
 app.post("/feedback/give", (req, res) => {
-    console.log(req.body)
+    // console.log(req.body)
     res.redirect("/")
 })
 
@@ -316,7 +316,7 @@ app.get("/saveShow/:id", (req, res) => {
     if (req.session.userFavList) {
 
         for (let entry of animeList) {
-            console.log(entry)
+            // console.log(entry)
             if (entry.id == req.params.id) {
                 req.session.userFavList.push(entry) 
             }

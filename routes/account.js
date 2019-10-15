@@ -14,8 +14,8 @@ router.post("/signin", (req, res) => {
 })
 
 router.post("/signup", (req, res) => {
-    console.log(req.body.user)
-    console.log(req.body.password)
+    // console.log(req.body.user)
+    // console.log(req.body.password)
     res.redirect("/account/signin")
 })
 
