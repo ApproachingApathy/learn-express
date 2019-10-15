@@ -2,12 +2,23 @@ const express = require("express");
 const bodyParser = require("body-parser")
 const session = require("express-session")
 const accountRouter = require("./routes/account")
+const pgp = require('pg-promise')();
+const db = pgp('postgres://localhost:5432/express_anime_app')
 const app = express()
 const PORT = 3000
 
 // app.get("/", (req, res) => {
 //     res.send("Hello World");
 // });
+
+
+async function printData() {
+    let data = await db.any('SELECT * FROM users')
+    console.log(data)
+} 
+
+printData()
+
 
 var animeList = [
     {
@@ -159,21 +170,6 @@ app.use(session({
 }))
 
 app.use("/account", accountRouter)
-// app.use(
-//     session({
-//       secret: "you don't know my session secret, ha!",
-//       resave: false,
-//       saveUninitialized: true
-//     })
-//   );
-
-
-// app.use(bodyParser.json())
-
-// app.post("/", (req, res) => {
-//     console.log(req.body);
-//     res.send("OK")
-// })
 
 app.get("/", (req, res) => {
     res.render("index")
@@ -188,7 +184,6 @@ app.get("/anime", (req, res) => {
 
     res.render("shows", {animeList: animeList})
     //Anime page
-    // res.send("<h1> List of Anime </h1>")
 })
 
 /**
@@ -213,7 +208,6 @@ app.get("/anime/tags/:tags", (req, res) => {
 })
 
 app.get("/anime/genre", (req, res) => {
-    //List of genres
     res.send("<h1> Genre List </h1>")
 })
 

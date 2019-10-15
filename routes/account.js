@@ -1,21 +1,23 @@
 const express = require("express")
 const router = express.Router()
+const pgp = require('pg-promise')();
+const db = require('../database.js')
 
-router.post("/signin", (req, res) => {
-    if (req.session.isAuthenticated) {
-        // res.redirect("dashboard")
-        // console.log([req.session, req.session.isAuthenticated])
-        // console.log(req.body)
+
+router.post("/signin", async (req, res) => {
+    let user = await db.getUserFromEmail(req.body.email)
+    if (user && user.password == req.body.password) {
+        req.session.isAuthenticated = true; 
+        req.session.user = user.username || null; 
+        res.redirect("dashboard");
     } else {
-        req.session.isAuthenticated = true
-        req.session.user = req.body.user || null
+        res.redirect('signin')
     }
-    res.redirect("dashboard")
+    // res.redirect("dashboard")
 })
 
 router.post("/signup", (req, res) => {
-    // console.log(req.body.user)
-    // console.log(req.body.password)
+    db.registerUser(req)
     res.redirect("/account/signin")
 })
 

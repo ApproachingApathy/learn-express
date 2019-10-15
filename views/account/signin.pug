@@ -4,12 +4,16 @@ block account
     .tab-bar
         p Please Sign-in
     .signin-div
+        if errorMsg
+            .error-msg
+                p= errorMsg
         form.flex-column(action="/account/signin", method="post")
             .form-group.flex-column
-                label(for="user-input") User
-                input#user.text-input(type="text", name="user")
+                label(for="user-input") Email
+                input#email.text-input(type="text", name="email")
             .form-group.flex-column
                 label(for="password-input") Password
                 input#password-input.text-input(type="password" name="password")
             button(type="submit") Sign In
+            a(href="/account/signup") Sign Up
 

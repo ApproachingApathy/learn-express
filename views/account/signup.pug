@@ -6,8 +6,17 @@ block account
     .signin-div
         form.flex-column(action="/account/signup", method="post")
             .form-group.flex-column
-                label(for="user-input") User
-                input#user.text-input(type="text", name="user")
+                label(for="email") Email
+                input#email.text-input(type="text", name="email")
+            .form-group.flex-column
+                label(for="username") Choose a User Name
+                input#username.text-input(type="text", name="username")
+            .form-group.flex-column
+                label(for="first-name") First Name
+                input#first-name.text-input(type="text", name="first_name")
+            .form-group.flex-column
+                label(for="last-name") Last Name
+                input#last-name.text-input(type="text", name="last_name")
             .form-group.flex-column
                 label(for="password-input") Password
                 input#password-input.text-input(type="password" name="password")
